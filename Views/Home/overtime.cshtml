@@ -1,0 +1,197 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "加班單申請";
+}
+
+<style>
+
+    #showMonth td {
+        height: 5rem;
+    }
+
+    .navbar {
+        background-color: #3b5998;
+    }
+
+    .navbar-toggler {
+        background-color: #334b80;
+    }
+
+    .nav-link {
+        color: #fff;
+    }
+
+        .nav-link:hover {
+            color: black;
+        }
+
+    .nav-item + nav-link {
+        color: #fff;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #3b5998;
+        color: black;
+        text-align: center;
+    }
+    /* 以下為新增 */
+    .whenToSet {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .choosedate {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .choosetime {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .selectday {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .whyToSet {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+
+    /* 送出申請按鈕 */
+    #demo3 {
+        position: relative;
+        border-radius: 5px;
+        width: 100px;
+        padding: 10px 0;
+        /* 文字顏色 */
+        color: #fff;
+        /* 邊框樣式、顏色、寬度 */
+        border: 3px solid #fff;
+        border-radius: 6px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        /* margin: 4px 2px; */
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: #3b5998;
+    }
+
+        #demo3:hover {
+            background-color: rgb(212, 212, 212);
+            color: black;
+            border: 3px solid rgb(228, 226, 226);
+        }
+    .btn-group {
+        margin:inherit;
+
+    }
+</style>
+<body>
+    <br>
+    <div class="container-sm">
+        <div class="container">
+            <div class="row">
+                <div class="dayoffpage1 col-12 col-md-6">
+                    <div class="item">
+                        <form>
+                            <p style="font-size: x-large;"><b><u>加班單申請</u></b></p>
+                            <p class="samewidth">
+                                <label for="userID"><b>員工編號 :</b></label>
+                                <input type='text' class='whenToSet' id="userID">
+                            </p>
+                            <p class="samewidth">
+                                <label for="uesrName"><b>員工姓名 :</b></label>
+                                <input type='text' class='whenToSet' id="uesrName">
+                            </p>
+                            <p class="samewidth">
+                                <label><b>加班類型 :</b></label>
+                                <input type="radio" id="weekday" name="overtype">
+                                <label for="weekday">平日加班</label>
+                                <input type="radio" id="weekendday" name="overtype">
+                                <label for="weekendday">假日加班</label>
+                            </p>
+                            <p class="samewidth">
+                                <label for="datestart"><b>加班日期 :</b></label>
+                                <input class="choosedate" id="datestart" type="date">
+                            </p>
+                            <p class="samewidth">
+                                <label for="timestart"><b> ▸ 開始時間 :</b></label>
+                                <input class="choosetime" type="time" id="timestart" name="appt" min="09:00" max="18:00"
+                                       required>
+                                <br>
+                            </p>
+                            <p class="samewidth">
+                                <label for="timeend"><b> ▸ 結束時間 :</b></label>
+                                <input class="choosetime" type="time" id="timeend" name="appt" min="09:00" max="18:00"
+                                       required>
+                                <br>
+                            </p>
+                            <p class="samewidth">
+                                <label for="reason"><b>加班原因 :</b></label>
+                                <input type='text' class='whyToSet' id="reason" required>
+                            </p>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="dayoffpage1 col-12 col-md-6">
+                    <div class="item">
+                        <form>
+                            <div>
+                                <p style="font-size: x-large;"><b><u>勞動基本法加班權益 :</u></b></p>
+                                <ul>
+                                    <li>工時</li>
+                                    <p>
+                                        <small>
+                                            勞工正常工作時間，每日不得超過8小時，每週不得超過40小時。<br>
+                                            每月延長工作時間總時數不得超過46小時
+                                        </small>
+                                    </p>
+                                    <li>加班費</li>
+                                    <p>
+                                        <small>
+                                            延長工作時間在2小時以內者，按平日每小時工資額加給1/3以上。<br>
+                                            再延長工作時間在2小時以內者，按平日每小時工資額加給2/3以上。
+                                        </small>
+                                    </p>
+                                    <li>例假及休息日</li>
+                                    <p>
+                                        <small>勞工每7日中應有2日之休息，其中1日為例假，1日為休息日。<br>雇主如有於週間更動之需要，除應與勞工協商合意外，仍應謹守<br>「不得連續工作逾6日」之前提。</small>
+                                    </p>
+                                    <li>
+                                        其他詳情請參考 : <a href="https://www.mol.gov.tw/topic/3066/5837/19493/"><u>勞動部基準法相關簡介</u></a>
+                                    </li>
+                                </ul>
+                                <br>
+                                <div class="btn-group"><button id="demo3">送出申請</button></div>
+                                <br><br>
+                                <br><br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div>
+            <script src="/weekmonth.js"></script>
+            <script src="/timer.js" type="text/javascript"></script>
+            <div class="footer">
+                <p> Copyright © 2021 SMIT14 team3 All right reserved. </p>
+            </div>
+        </div>
+</body>

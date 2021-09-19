@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "申請紀錄查詢";
+}
+
+<style>
+    /* 以下為新增 */
+
+
+    .whenToSet {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .choosedate {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .choosetime {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .selectday {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+    .whyToSet {
+        border: 1px rgb(189, 189, 189) solid;
+        border-radius: 5px;
+    }
+
+
+    /* 上傳選擇檔案按鈕 */
+    .FileUpBtn {
+        position: relative;
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+        width: 100px;
+        padding: 10px 0;
+        /* 文字顏色 */
+        color: #fff;
+        /* 邊框樣式、顏色、寬度 */
+        border: 3px solid #fff;
+        border-radius: 6px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        /* margin: 4px 2px; */
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: #3b5998;
+    }
+
+        .FileUpBtn:hover {
+            background-color: rgb(212, 212, 212);
+            color: black;
+            border: 3px solid rgb(228, 226, 226);
+        }
+
+    /* 送出申請按鈕 */
+    #demo3 {
+        position: relative;
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+        width: 100px;
+        padding: 10px 0;
+        /* 文字顏色 */
+        color: #fff;
+        /* 邊框樣式、顏色、寬度 */
+        border: 3px solid #fff;
+        border-radius: 6px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        /* margin: 4px 2px; */
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: #3b5998;
+    }
+
+        #demo3:hover {
+            background-color: rgb(212, 212, 212);
+            color: black;
+            border: 3px solid rgb(228, 226, 226);
+        }
+</style>
+<body>
+    <div class="container-sm">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="dayoffpage1">
+                    <div class="item">
+                        <p style="font-size: x-large;"><br><b><u>申請紀錄查詢</u></b></p>
+                        <p style="font-size: x-large;"><br><b><u>以下表單內容帶修改</u></b></p>
+                        <br>
+                        <p>
+                            <label for="uesrName"><b>員工姓名 :</b></label>
+                            <input type='text' class='whenToSet' id="uesrName">
+                        </p>
+                        <p>
+
+                            <label for="moneytype"><b>費用說明 :</b></label>
+                            <input type='text' class='whenToSet' id="moneytype">
+                        </p>
+                        <p>
+                            <label for="howmuch"><b>支出金額 :</b></label>
+                            <input type='text' class='whenToSet' id="howmuch">
+                        </p>
+                        <div class="bottom">
+                            <p>
+                                <label for="reason"><b>發票上傳 :</b></label>
+                                <br><small>公司統編22338899<br>( 一次只能上傳一份，僅限jpg或png檔案 ) </small>
+                            </p>
+                            <!-- 選擇檔案上傳start -->
+                            <input id="FileUp" class="FileUp" type="file" name="ff" style="display:none">
+                            <span class="FileUpBtn">選擇檔案</span>
+                            <spal class="FileUpFileName">未選擇檔案</spal>
+                            <!-- 上傳檔案預覽開始 -->
+                            <div>
+                                <img class="preview" style="max-width: 150px; max-height: 150px;">
+                                <div class="size"></div>
+                            </div>
+                            <!-- 上傳檔案預覽結束 -->
+                            <div><button id="demo3">送出申請</button></div>
+                            <script>
+                                //觸發原本上傳按鈕
+                                $('.FileUpBtn').click(function () {
+                                    document.getElementById("FileUp").click();
+                                    //$("#xyzFileUp").click();
+                                });
+                                //顯示上傳檔案檔名
+                                $(".FileUp").on("change", function () {
+                                    var filePath = $(this).val();
+                                    var arr = filePath.split('\\');
+                                    var fileName = arr[arr.length - 1];
+                                    $(".FileUpFileName").html(fileName);
+                                });
+                            </script>
+                            <!-- 選擇檔案上傳end -->
+                            <script>
+                                $(function () {
+
+                                    function format_float(num, pos) {
+                                        var size = Math.pow(10, pos);
+                                        return Math.round(num * size) / size;
+                                    }
+
+                                    function preview(input) {
+
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+
+                                            reader.onload = function (e) {
+                                                $('.preview').attr('src', e.target.result);
+                                                var KB = format_float(e.total / 1024, 2);
+                                                $('.size').text("檔案大小：" + KB + " KB");
+                                            }
+
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+
+                                    $("body").on("change", ".FileUp", function () {
+                                        preview(this);
+                                    })
+
+                                })
+                            </script>
+                            <!-- 上傳檔案預覽js end -->
+                        </div>
+                        <div>
+                            <div class="footer">
+                                <p> Copyright © 2021 SMIT14 team3 All right reserved. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*<link rel="stylesheet" href="/navbar/navber.css">*@
+    <style>
+        .navbar {
+            background-color: #3b5998;
+        }
+
+        .navbar-toggler {
+            background-color: #334b80;
+        }
+
+        .nav-link {
+            color: #fff;
+        }
+
+            .nav-link:hover {
+                color: black;
+            }
+
+        .nav-item + nav-link {
+            color: #fff;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #3b5998;
+            color: #fff;
+            text-align: center;
+        }
+
+        .dropdown-menu-in {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: red;
+            background-size: 20px;
+        }
+    </style>
+    <title>@ViewBag.Title - 登入系統</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @*<script>window.location.href="http://google.com" ;</script>*@
+    @*! navbar-expand-md版面小到md自動換成漢堡鈕 *@
+    <div class="navbar navbar-expand-md  navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="color: #fff;"><b>EIP系統</b></a>
+            <!-- 縮排成漢堡鈕 -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">打卡<span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item">@Html.ActionLink("打卡", "clockin", "Home")</div>
+                            <div class="dropdown-item">@Html.ActionLink("出缺勤紀錄查詢", "clockcheck", "Home")</div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            表單申請
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item">@Html.ActionLink("申請紀錄查詢", "check", "Home")</div>
+                            <div class="dropdown-divide"></div>
+                            <div class="dropdown-item">@Html.ActionLink("請假單", "dayoff3", "Home")</div>
+                            <div class="dropdown-item">@Html.ActionLink("加班單", "overtime", "Home") </div>
+                            <div class="dropdown-item">@Html.ActionLink("經費申請", "About", "Home") </div>
+                            <div class="dropdown-item">補打卡申請</div>
+                            <div class="dropdown-item">@Html.ActionLink("審核申請", "bosscheck", "Home")</div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">工作日誌</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item">代辦事項</div>
+                            <div class="dropdown-item">行事曆</div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">留言板</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">訂餐系統</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">小遊戲</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">帳戶設定</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="color: snow;">現在時間 :</div>
+            <div id="times" style="color: snow;"></div>
+            <!-- 新增使用者資訊 -->
+            <div class="nav-item dropdown float-right">
+                <a class="nav-link dropdown-toggle pull-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img src="/photo/people.png"
+                         style="width: 30px;height: 25px;">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-3 text-muted" aria-labelledby="navbarDropdown"
+                     style="max-width: 50px; ">
+                    <p>
+                        使用者 :
+                    </p>
+                    <p class="mb-0">
+                        部門資訊 :
+                    </p>
+                    <p><a class="dropdown-item" href="#" style="text-align: center;margin-top: 10px;">登出</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- 使用者資訊結束 -->
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <div>
+            <script src="~/Scripts/weekmonth.js"></script>
+            <script src="~/Scripts/timer.js" type="text/javascript"></script>
+            <div class="footer">
+                <p> Copyright © 2021 SMIT14 team3 All right reserved. </p>
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
