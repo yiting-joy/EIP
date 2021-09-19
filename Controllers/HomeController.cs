@@ -63,7 +63,7 @@ namespace index.Controllers
 
             return View();
         }
-        public ActionResult erropage()
+        public ActionResult changepage()
         {
 
             return View();
